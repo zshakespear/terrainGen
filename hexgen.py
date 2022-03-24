@@ -1,3 +1,9 @@
+"""
+TO-DO:
+    - Find someway to print the hex map to the terminal
+    - Print to txt
+"""
+
 import hex
 
 path = [x for x in range(0,20)]

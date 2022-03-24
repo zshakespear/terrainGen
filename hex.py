@@ -1,3 +1,9 @@
+"""
+TODO:
+    -Implement water sources, rivers, lakes
+    -Implement random locations
+"""
+
 import random
 
 class Hex:
@@ -35,18 +41,7 @@ class Hex:
             
     def setNeigh6(self, neighbor):
         self.neigh6 = neighbor
-    """
-    Each branch will generate a new biome based off the current biome
-    and then pass the new biome into a new hex located in the neighbor
-    and link the new hex to the self. 
-    After initializing each of the neighbors, the function will link them
-    all together.
-    I think I could create a helperfunction to generate the biome since
-    genNeighbors will be doing the heavy lifting of creating new hexes
-    and chaining them together.
-    genNeighbors tests to see if there is already a neighbor and then
-    generates a new one at each location there is not already a neighbor. 
-    """
+    
     def genNeighbors(self):
         if self.neigh1 == None:
             print("Initializing neighbor 1\n")
