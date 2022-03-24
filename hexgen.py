@@ -1,6 +1,6 @@
 import hex
 
-path = [1 for x in range(0,20)]
+path = [x for x in range(0,20)]
 
 seed = input('Input the seed biome: \n0: Desert\n1: Hill\n2: Mountain\n3: Plain\n4: Wetland\n5: Forest\n')
 while seed != '0' and seed != '1' and seed != '2' and seed != '3' and seed != '4' and seed != '5':
@@ -23,3 +23,10 @@ if seed == 5:
     
 currenth = hex.Hex(seedb)
 
+currenth.genNeighbors()
+currenth.neigh1.genNeighbors()
+
+for el in path:
+    #print(el)
+    currenth = currenth.neigh1
+    currenth.neigh1.genNeighbors()

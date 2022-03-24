@@ -49,32 +49,32 @@ class Hex:
     """
     def genNeighbors(self):
         if self.neigh1 == None:
-            print("Initializing neighbor 1")
+            print("Initializing neighbor 1\n")
             seedb = self.helperBiome()
             self.setNeigh1(Hex(seedb))
             
         if self.neigh2 == None:
-            print("Initializing neighbor 2")
+            print("Initializing neighbor 2\n")
             seedb = self.helperBiome()
             self.setNeigh2(Hex(seedb))
             
         if self.neigh3 == None:
-            print("Initializing neighbor 3")
+            print("Initializing neighbor 3\n")
             seedb = self.helperBiome()
             self.setNeigh3(Hex(seedb))
             
         if self.neigh4 == None:
-            print("Initializing neighbor 4")
+            print("Initializing neighbor 4\n")
             seedb = self.helperBiome()
             self.setNeigh4(Hex(seedb))
             
         if self.neigh5 == None:
-            print("Initializing neighbor 5")
+            print("Initializing neighbor 5\n")
             seedb = self.helperBiome()
             self.setNeigh5(Hex(seedb))
             
         if self.neigh6 == None:
-            print("Initializing neighbor 6")
+            print("Initializing neighbor 6\n")
             seedb = self.helperBiome()
             self.setNeigh6(Hex(seedb))
         self.helperLink()
@@ -173,5 +173,6 @@ class Hex:
             seed = random.randint(0,1)
             if seed == 0:
                 seedb = 'wetland'
-            if seed ==1:
+            if seed == 1:
                 seedb = 'plain'
+            return seedb
