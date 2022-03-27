@@ -43,7 +43,7 @@ while True:
         print('Invalid input.\n')
 
 hb.genNeighbors(0, 0, 0, hexmap, 0, maxit)
-print('Done generating map.\nPrinting')
+#print('Done generating map.\nPrinting')
 
     
 hb.printMap(hexmap)
