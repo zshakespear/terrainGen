@@ -1,10 +1,6 @@
 """
 TO-DO:
-    - Change hexgen to work on a dictionary.
-    - Implement helperGen function from hex file
-    - Move functions into hex file and change name to hexmap?
     - Print to txt
-    - Implement traversal 
 """
 
 import honeybees as hb
@@ -43,6 +39,10 @@ while True:
         print('Invalid input.\n')
 
 hb.genNeighbors(0, 0, 0, hexmap, 0, maxit)
+print("about to manually add hexes\n")
+# hexmap[(maxit, -maxit, 0)] = hb.helperGen(hexmap[(maxit-1,-maxit+1,0)].biome)
+# hexmap[(0,maxit,-maxit)] = hb.helperGen(hexmap[(0,maxit-1,-maxit+1)].biome)
+# hexmap[(-maxit, 0, maxit)] = hb.helperGen(hexmap[(-maxit+1,0,maxit-1)].biome)
 #print('Done generating map.\nPrinting')
 
     

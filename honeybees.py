@@ -25,7 +25,7 @@ def printMap(hexmap):
         print(el, ': ', hexmap[el].biome,'\n')
         
 def genNeighbors(qcoord, rcoord, scoord, hexmap, it, maxit):
-    print('On the ', it,"th iteration\n")
+    #print('On the ', it,"th iteration\n")
     seedcoord = (qcoord, rcoord, scoord)
     neigh1 = (qcoord, rcoord - 1, scoord + 1)
     neigh2 = (qcoord + 1, rcoord - 1, scoord)
@@ -43,7 +43,6 @@ def genNeighbors(qcoord, rcoord, scoord, hexmap, it, maxit):
     if neigh2 in hexmap.keys():
         pass
     else:
-        
         if it < maxit :
             hexmap[neigh2] = helperGen(seedb)
             genNeighbors(neigh2[0],neigh2[1],neigh2[2], hexmap, it+1, maxit)
@@ -72,7 +71,7 @@ def genNeighbors(qcoord, rcoord, scoord, hexmap, it, maxit):
             hexmap[neigh6] = helperGen(seedb)
             genNeighbors(neigh6[0],neigh6[1],neigh6[2], hexmap, it+1, maxit)
     
-# 
+
 def helperGen(seedb):
     if seedb == "forest" :
         #print("This is a forest")
