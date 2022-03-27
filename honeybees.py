@@ -8,12 +8,11 @@ import random
 
 class Hex:
 
-    def __init__(self, b):
-        if b != 'forest' and b!= 'plain' and b != 'desert' and b != 'mountain' and b != 'hill' and b != 'wetland':
-                print('invalid initializer')
-                return
+    def __init__(self, coords):
         
-        self.biome = b
+        self.coords = coords
+        
+        
     
     def setBiome(self, b):
         self.biome = b
