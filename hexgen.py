@@ -1,44 +1,14 @@
 """
 TO-DO:
     - Change hexgen to work on a dictionary.
-    - Find someway to print the hex map to the terminal
+    - Implement helperGen function from hex file
+    - Move functions into hex file and change name to hexmap?
     - Print to txt
-    - New traversal patterns
+    - Implement traversal 
 """
 
-import hex
+import honeybees as hb
 #Borrowed imports
-
-def printMap(hexmap):
-    coord = hexmap.keys()
-    for el in coord:
-        print(el, ': ', hexmap[el].biome,'\n')
-        
-def genNeighbors(qcoord, rcoord, scoord, hexmap):
-    seedcoord = (qcoord, rcoord, scoord)
-    neigh1 = (qcoord, rcoord - 1, scoord + 1)
-    neigh2 = (qcoord + 1, rcoord - 1, scoord)
-    neigh3 = (qcoord +1, rcoord, scoord -1)
-    neigh4 = (qcoord, rcoord +1, scoord -1)
-    neigh5 = (qcoord -1, rcoord +1, scoord)
-    neigh6 = (qcoord -1, rcoord, scoord +1)
-    seedb = hexmap[seedcoord].biome
-    if(hexmap[neigh1] == None):
-        hexmap[neigh1] = helperGen(seedb)
-    if(hexmap[neigh2] == None):
-        hexmap[neigh2] = helperGen(seedb)
-    if(hexmap[neigh3] == None):
-        hexmap[neigh3] = helperGen(seedb)
-    if(hexmap[neigh4] == None):
-        hexmap[neigh4] = helperGen(seedb)
-    if(hexmap[neigh5] == None):
-        hexmap[neigh5] = helperGen(seedb)
-    if(hexmap[neigh6] == None):
-        hexmap = helperGen(seedb)
-    
-def helperGen(seedb):
-    print('helperGen')
-    return hex.Hex('plain')
 
 # path = [x for x in range(0,20)]
 
@@ -61,10 +31,19 @@ if seed == 4:
 if seed == 5:
     seedb = 'forest'
     
-start = hex.Hex(seedb)
+start = hb.Hex(seedb)
 
 hexmap ={(0,0,0) : start}
+while True:
+    maxit = input('Input number of layers for the map\n')
+    try:
+        maxit = int(maxit)
+        break
+    except:
+        print('Invalid input.\n')
 
+hb.genNeighbors(0, 0, 0, hexmap, 0, maxit)
+print('Done generating map.\nPrinting')
 
     
-printMap(hexmap)
+hb.printMap(hexmap)
