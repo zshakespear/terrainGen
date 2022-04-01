@@ -5,19 +5,67 @@ TODO:
 """
 
 import random
+import noise
 
 class Hex:
-
-    def __init__(self, coords):
-        
+    #Need to add error handling
+    def __init__(self, coords, seed):
         self.coords = coords
-        
-        
+        self.ele = 100 * abs(noise.pnoise2(coords[0]/20,coords[1]/25,base = seed))
+        self.pre = 100 * abs(noise.pnoise2(coords[0]/20,coords[1]/25,base = seed))
+        self.temp = 100 * abs(noise.pnoise2(coords[0]/20,coords[1]/25,base = seed))
+        self.setBiome()
+        self.setWater()
+        self.setLocation()
     
-    def setBiome(self, b):
-        self.biome = b
-        
+    def setBiome(self):
+        if self.temp <= 25 and self.pre <= 50:
+            self.biome = 'tundra'
+        else: 
+            if 25 < self.temp and self.temp <= 75 and self.pre <=50:
+                self.biome = 'plain'
+            else:
+                if 75 < self.temp and self.pre <= 50:
+                    self.biome = 'desert'
+                else: 
+                    if self.pre > 50 and self.temp <= 50:
+                        self.biome = 'forest'
+                    else:
+                        if self.pre > 50 and self.temp > 50:
+                            self.biome = 'wetland'
+                        else:
+                            if self.ele > 80:
+                                self.biome = 'mountain'
     
+    #Will want to add springs somehow 
+    def setWater(self):
+        if self.ele < 10 and self.pre > 60 and self.biome != 'desert':
+            self.water = 'lake'
+        else: 
+            if self.ele < 10 and self.pre > 60 and self.biome == 'desert':
+                self.water = 'oasis'
+            else:
+                if self.ele < 60 and self.pre > 60:
+                    self.water = 'river'
+                else:
+                    self.water = 'none'
+
+    def setLocation(self):
+        location = random.randint(1,16)
+        if location == 16:
+            if self.biome == 'mountain':
+                print('this is a mountain\n')
+            if self.biome == 'wetland':
+                print('this is a wetland\n')
+            if self.biome == 'forest':
+                print('this is a forest\n')
+            if self.biome == 'tundra':
+                print('this is a tundra\n')
+            if self.biome == 'plain':
+                print('this is a plain\n')
+            if self.biome == 'desert':
+                print('this is a desert\n')
+"""  
 def printMap(hexmap):
     coord = hexmap.keys()
     for el in coord:
@@ -144,3 +192,4 @@ def helperGen(seedb):
             seedb = 'plain'
         
     return Hex(seedb)
+"""

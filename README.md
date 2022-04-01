@@ -4,14 +4,14 @@ This code generates randomly generated hex maps. The hexgen.py file does most of
 while the honeybees file declares the hex class and the functions called by hexgen.
 
 The user will input the size of the map as an integer representing the number of layers around the
-center point. Hexgen generates a list of possible q,r,s coordinates and then initializes a dictionary
-with keys equal to these coordinates. The program then assigns a hex to each of these keys, initialzing
-the hex with the coordinate values.
+center point. Hexgen generates a set of possible q,r,s coordinates and then initializes a set of hexes
+with the coordinates. 
 
 When a hex is initialized, three values are generated using Perlin noise. Depending on the constellation
 of values, a biome is assigned to each hex. 
 
-Hexgen finishes by printing the dictionary to a txt file.
+Hexgen finishes by generating a jpg map of the world generated. The code was adapted from this website:
+https://variable-scope.com/posts/hexagon-tilings-with-python
 
 The inspiration for the coordinate system comes from Red Blob Games: https://www.redblobgames.com/grids/hexagons/
 
