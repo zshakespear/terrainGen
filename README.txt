@@ -18,3 +18,6 @@ The inspiration for the coordinate system comes from Red Blob Games: https://www
 The inspiration for the use of Perlin noise comes from the following videos:
 https://www.youtube.com/watch?v=wZXW_nzJotc
 https://www.youtube.com/watch?v=fjZAgoxFKiQ
+
+TO-DO:
+-Fix the limits on the biomes so that there aren't as many tundra 
