@@ -24,39 +24,39 @@ class Hex:
     
     def setElevation(self):
         maxel = 100
-        base = 20
-        noiseval = noise.pnoise2(self.coords[0]/20,self.coords[1]/25,base = random.randint(0,100))
+        base = 50
+        noiseval = noise.pnoise2(self.coords[0]/34,self.coords[1]/10,octaves = 1, base = random.randint(0,100))
         self.ele = maxel * noiseval + base
         
     def setPrecipitation(self):
         maxpre = 100
-        base = 20
-        noiseval = noise.pnoise2(self.coords[0]/20,self.coords[1]/25,base = random.randint(0,100))
+        base = 50
+        noiseval = noise.pnoise2(self.coords[0]/34,self.coords[1]/10,octaves = 1, base = random.randint(0,100))
         self.pre = maxpre * noiseval + base
         
     def setTemperature(self):
         maxtemp = 100
-        base = 40
-        noiseval = noise.pnoise2(self.coords[0]/20,self.coords[1]/25,base = random.randint(0,100))
+        base = 50
+        noiseval = noise.pnoise2(self.coords[0]/34,self.coords[1]/10, octaves = 1, base = random.randint(0,100))
         self.temp = maxtemp * noiseval + base
     
     def setBiome(self):
-        if self.temp <= 10  and self.pre <= 40:
+        if self.temp <= 10  and self.pre <= 50:
             self.biome = 'tundra'
         else: 
-            if 10 < self.temp and self.temp <= 75 and self.pre <=40:
+            if 10 < self.temp and self.temp <= 75 and self.pre <=50:
                 self.biome = 'plain'
             else:
                 if 75 < self.temp and self.pre <= 30:
                     self.biome = 'desert'
                 else:
-                    if 75 < self.temp and self.pre > 30 and self.pre < 40:
+                    if 75 < self.temp and self.pre > 30 and self.pre < 50:
                         self.biome = 'plain'
                     else: 
-                        if self.pre > 40 and self.temp <= 50:
+                        if self.pre > 50 and self.temp <= 50:
                             self.biome = 'forest'
                         else:
-                            if self.pre > 40 and self.temp > 50:
+                            if self.pre > 50 and self.temp > 50:
                                 self.biome = 'wetland'
                         
         if self.ele > 80:
@@ -79,14 +79,20 @@ class Hex:
         location = random.randint(1,16)
         if location == 16:
             if self.biome == 'mountain':
-                print('this is a mountain\n')
+               self.location = 'cave'
+               print('cave at (' + str(self.coords[0]) + ',' + str(self.coords[1]) + ')\n')
             if self.biome == 'wetland':
-                print('this is a wetland\n')
+                self.location = 'witch hutch'
+                print('witch hutch at (' + str(self.coords[0]) + ',' + str(self.coords[1]) + ')\n')
             if self.biome == 'forest':
-                print('this is a forest\n')
+                self.location = 'owlbear den'
+                print('owlbear den at (' + str(self.coords[0]) + ',' + str(self.coords[1]) + ')\n')
             if self.biome == 'tundra':
-                print('this is a tundra\n')
+                self.location = 'ruined landship'
+                print('ruined landship at (' + str(self.coords[0]) + ',' + str(self.coords[1]) + ')\n')
             if self.biome == 'plain':
-                print('this is a plain\n')
+                self.location = 'village'
+                print('village at (' + str(self.coords[0]) + ',' + str(self.coords[1]) + ')\n')
             if self.biome == 'desert':
-                print('this is a desert\n')
+                self.location = 'tomb'
+                print('tomb at (' + str(self.coords[0]) + ',' + str(self.coords[1]) + ')\n')

@@ -20,4 +20,6 @@ https://www.youtube.com/watch?v=wZXW_nzJotc
 https://www.youtube.com/watch?v=fjZAgoxFKiQ
 
 TO-DO:
--Fix the limits on the biomes so that there aren't as many tundra 
+-Toy with the biome limits
+-Add more random locations
+-Find way to mark on map where the locations are
