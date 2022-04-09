@@ -5,6 +5,8 @@ TODO:
 
 import random
 import noise
+import pandas as pd
+import os
 
 boundaryscale = 2
 
@@ -15,9 +17,6 @@ class Hex:
         self.setElevation()
         self.setPrecipitation()
         self.setTemperature()
-        #self.ele = 100 * abs(noise.pnoise2(coords[0]/20,coords[1]/25,base = random.randint(0,100)))
-        #self.pre = 100 * abs(noise.pnoise2(coords[0]/20,coords[1]/25,base = random.randint(0,100)))
-        #self.temp = 100 * abs(noise.pnoise2(coords[0]/20,coords[1]/25,base = random.randint(0,100)))
         self.setBiome()
         self.setWater()
         self.setLocation()
@@ -41,58 +40,73 @@ class Hex:
         self.temp = maxtemp * noiseval + base
     
     def setBiome(self):
-        if self.temp <= 10  and self.pre <= 50:
-            self.biome = 'tundra'
-        else: 
-            if 10 < self.temp and self.temp <= 75 and self.pre <=50:
-                self.biome = 'plain'
-            else:
-                if 75 < self.temp and self.pre <= 30:
-                    self.biome = 'desert'
-                else:
-                    if 75 < self.temp and self.pre > 30 and self.pre < 50:
-                        self.biome = 'plain'
-                    else: 
-                        if self.pre > 50 and self.temp <= 50:
-                            self.biome = 'forest'
-                        else:
-                            if self.pre > 50 and self.temp > 50:
-                                self.biome = 'wetland'
-                        
         if self.ele > 80:
             self.biome = 'mountain'
+        else:
+            if self.pre < 50 and self.temp >50
+                self.biome = 'plain'
+            else:
+                if self.pre < 50 and self.temp < 50:
+                    self.biome = 'tundra'
+                else:
+                    if self.pre >=50 and self.temp >=50:
+                        self.biome = 'wetland'
+                    else:
+                        if self.pre >= 50 and self.temp < 50:
+                            self.biome = 'forest'
+                        
     
     #Will want to add springs somehow 
     def setWater(self):
-        if self.ele < 10 and self.pre > 60 and self.biome != 'desert':
+        if self.ele < 10 and self.pre > 60:
             self.water = 'lake'
         else: 
-            if self.ele < 10 and self.pre > 60 and self.biome == 'desert':
-                self.water = 'oasis'
+            if self.ele < 60 and self.pre > 60:
+                self.water = 'river'
             else:
-                if self.ele < 60 and self.pre > 60:
-                    self.water = 'river'
-                else:
-                    self.water = 'none'
-
+                self.water = 'none'
+    
+    def coordsToString(self):
+        coordstring = '('+str(self.coords[0])+ ',' + str(self.coords[1]) + ')\n'
+        return coordstring
+    
+    #I want to modify this so that it uses an excel sheet.
+    #Can I do that really quickly?
     def setLocation(self):
         location = random.randint(1,16)
         if location == 16:
-            if self.biome == 'mountain':
-               self.location = 'cave'
-               print('cave at (' + str(self.coords[0]) + ',' + str(self.coords[1]) + ')\n')
-            if self.biome == 'wetland':
-                self.location = 'witch hutch'
-                print('witch hutch at (' + str(self.coords[0]) + ',' + str(self.coords[1]) + ')\n')
-            if self.biome == 'forest':
-                self.location = 'owlbear den'
-                print('owlbear den at (' + str(self.coords[0]) + ',' + str(self.coords[1]) + ')\n')
-            if self.biome == 'tundra':
-                self.location = 'ruined landship'
-                print('ruined landship at (' + str(self.coords[0]) + ',' + str(self.coords[1]) + ')\n')
-            if self.biome == 'plain':
-                self.location = 'village'
-                print('village at (' + str(self.coords[0]) + ',' + str(self.coords[1]) + ')\n')
-            if self.biome == 'desert':
-                self.location = 'tomb'
-                print('tomb at (' + str(self.coords[0]) + ',' + str(self.coords[1]) + ')\n')
+            locseed = random.randint(1,15)
+            if locseed == 1:
+                self.location = 'Pit/Crater'
+            if locseed == 2:
+                self.location = 'Tomb'
+            if locseed == 3:
+                self.location = 'Bandit encampment'
+            if locseed == 4:
+                self.location = 'Small village'
+            if locseed == 5:
+                self.location = 'Deserted camp'
+            if locseed == 6:
+                self.location = 'Ancient Battleground'
+            if locseed == 7:
+                self.location = 'Overgrown Road'
+            if locseed == 8:
+                self.location = 'Fossil'
+            if locseed == 9:
+                self.location = 'Abandoned Military Outpost'
+            if locseed == 10:
+                self.location = 'Wizard\' Tower'
+            if locseed == 11:
+                self.location = 'Magic Wellspring'
+            if locseed == 12:
+                self.location = 'Witch\'s Hutch'
+            if locseed == 13:
+                self.location = 'Ruins'
+            if locseed == 14:
+                self.location = 'Monster Lair'
+            if locseed == 15:
+                self.location = 'Ancient Military Cache'
+            
+            print(self.location + 'at ' + coordsToString())
+        else:
+            self.location = 'none'
