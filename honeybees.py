@@ -43,10 +43,10 @@ class Hex:
         if self.ele > 80:
             self.biome = 'mountain'
         else:
-            if self.pre < 50 and self.temp >50:
+            if self.pre < 50 and self.temp >30:
                 self.biome = 'plain'
             else:
-                if self.pre < 50 and self.temp < 30:
+                if self.pre < 50 and self.temp <= 30:
                     self.biome = 'tundra'
                 else:
                     if self.pre >=50 and self.temp >=50:
@@ -54,8 +54,7 @@ class Hex:
                     else:
                         if self.pre >= 50 and self.temp < 50:
                             self.biome = 'forest'
-                        else:
-                            self.biome = 'plain'
+                        
                         
     
     #Will want to add springs somehow 
@@ -69,11 +68,9 @@ class Hex:
                 self.water = 'none'
     
     def coordsToString(self):
-        coordstring = '('+str(self.coords[0])+ ',' + str(self.coords[1]) + ')\n'
+        coordstring = '('+str(self.coords[0])+ ',' + str(self.coords[1]) + ')'
         return coordstring
     
-    #I want to modify this so that it uses an excel sheet.
-    #Can I do that really quickly?
     def setLocation(self):
         location = random.randint(1,16)
         if location == 16:
@@ -84,6 +81,6 @@ class Hex:
             locseed = random.randint(0, loclimit)
             self.location = locgen.at[locseed, 'Locations']
             
-            print(self.location + ' at ' + self.coordsToString())
+            # print(self.location + ' at ' + self.coordsToString())
         else:
             self.location = 'none'

@@ -8,6 +8,7 @@ import random
 import hextile
 from PIL import Image
 from aggdraw import Draw, Brush, Pen
+import pandas as pd
 
 coordset = []
 rows = 34
@@ -18,9 +19,17 @@ for i in range(rows):
     
 hexdict = {}
 seed = random.randint(0,256)
+locationList =  pd.DataFrame([['Location', 'Coordinates']])
 for el in coordset:
     hexdict[el] = hb.Hex((el[0],el[1]))
-
+    if hexdict[el].location != 'none':
+        locationpd = pd.DataFrame([[hexdict[el].location, hexdict[el].coordsToString()]])
+        locationList = pd.concat([locationList,locationpd])
+        
+with open("locationList.txt", 'w') as file:
+        textDummy = locationList.to_string(header=False, index = False)
+        file.write(textDummy)
+        
 def color_from_biome(Hex):
     if Hex.biome == "wetland":
         color = 9, 82, 86
