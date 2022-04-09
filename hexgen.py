@@ -57,6 +57,15 @@ def color_from_el(Hex):
                     color = 62, 255, 139
     return color
     
+def color_from_water(Hex):
+    if Hex.water == 'river':
+        color = 71, 168, 189
+    if Hex.water == 'lake':
+        color = 30, 56, 136
+    if Hex.water == 'none':
+        color = 217, 208, 222
+    return color
+
 def color_from_pre(Hex):
     if Hex.pre < 10:
         color = 218, 227, 229
@@ -104,35 +113,35 @@ for row in range(rows):
 draw.flush() 
 image.save("biomeMap.jpg")
 
-for row in range(rows):
-  #color = row * 10, row * 20, row * 30 #Sets the color for the row with RGB values
-  for col in range(columns):
-    hexagon = hexagon_generator(row, col) #Passes the row and column into the call function
-    coords = (row, col)
-    color = color_from_el(hexdict[coords])
-    draw.polygon(list(hexagon), Brush(color)) #Paints inside the vertices using the color determined by the row
-draw.flush() 
-image.save("elMap.jpg")
+# for row in range(rows):
+#   #color = row * 10, row * 20, row * 30 #Sets the color for the row with RGB values
+#   for col in range(columns):
+#     hexagon = hexagon_generator(row, col) #Passes the row and column into the call function
+#     coords = (row, col)
+#     color = color_from_el(hexdict[coords])
+#     draw.polygon(list(hexagon), Brush(color)) #Paints inside the vertices using the color determined by the row
+# draw.flush() 
+# image.save("elMap.jpg")
 
 for row in range(rows):
   #color = row * 10, row * 20, row * 30 #Sets the color for the row with RGB values
   for col in range(columns):
     hexagon = hexagon_generator(row, col) #Passes the row and column into the call function
     coords = (row, col)
-    color = color_from_pre(hexdict[coords])
+    color = color_from_water(hexdict[coords])
     draw.polygon(list(hexagon), Brush(color)) #Paints inside the vertices using the color determined by the row
 draw.flush() 
-image.save("preMap.jpg")
+image.save("waterMap.jpg")
 
-for row in range(rows):
-  #color = row * 10, row * 20, row * 30 #Sets the color for the row with RGB values
-  for col in range(columns):
-    hexagon = hexagon_generator(row, col) #Passes the row and column into the call function
-    coords = (row, col)
-    color = color_from_temp(hexdict[coords])
-    draw.polygon(list(hexagon), Brush(color)) #Paints inside the vertices using the color determined by the row
-draw.flush() 
-image.save("tempMap.jpg")
+# for row in range(rows):
+#   #color = row * 10, row * 20, row * 30 #Sets the color for the row with RGB values
+#   for col in range(columns):
+#     hexagon = hexagon_generator(row, col) #Passes the row and column into the call function
+#     coords = (row, col)
+#     color = color_from_temp(hexdict[coords])
+#     draw.polygon(list(hexagon), Brush(color)) #Paints inside the vertices using the color determined by the row
+# draw.flush() 
+# image.save("tempMap.jpg")
 
 """
 # path = [x for x in range(0,20)]

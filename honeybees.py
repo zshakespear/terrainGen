@@ -43,10 +43,10 @@ class Hex:
         if self.ele > 80:
             self.biome = 'mountain'
         else:
-            if self.pre < 50 and self.temp >50
+            if self.pre < 50 and self.temp >50:
                 self.biome = 'plain'
             else:
-                if self.pre < 50 and self.temp < 50:
+                if self.pre < 50 and self.temp < 30:
                     self.biome = 'tundra'
                 else:
                     if self.pre >=50 and self.temp >=50:
@@ -54,6 +54,8 @@ class Hex:
                     else:
                         if self.pre >= 50 and self.temp < 50:
                             self.biome = 'forest'
+                        else:
+                            self.biome = 'plain'
                         
     
     #Will want to add springs somehow 
@@ -75,38 +77,13 @@ class Hex:
     def setLocation(self):
         location = random.randint(1,16)
         if location == 16:
-            locseed = random.randint(1,15)
-            if locseed == 1:
-                self.location = 'Pit/Crater'
-            if locseed == 2:
-                self.location = 'Tomb'
-            if locseed == 3:
-                self.location = 'Bandit encampment'
-            if locseed == 4:
-                self.location = 'Small village'
-            if locseed == 5:
-                self.location = 'Deserted camp'
-            if locseed == 6:
-                self.location = 'Ancient Battleground'
-            if locseed == 7:
-                self.location = 'Overgrown Road'
-            if locseed == 8:
-                self.location = 'Fossil'
-            if locseed == 9:
-                self.location = 'Abandoned Military Outpost'
-            if locseed == 10:
-                self.location = 'Wizard\' Tower'
-            if locseed == 11:
-                self.location = 'Magic Wellspring'
-            if locseed == 12:
-                self.location = 'Witch\'s Hutch'
-            if locseed == 13:
-                self.location = 'Ruins'
-            if locseed == 14:
-                self.location = 'Monster Lair'
-            if locseed == 15:
-                self.location = 'Ancient Military Cache'
+            wd = os.getcwd()
+            wd+='\GenLoc.xlsx'
+            locgen = pd.read_excel(wd)
+            loclimit = locgen.size - 1
+            locseed = random.randint(0, loclimit)
+            self.location = locgen.at[locseed, 'Locations']
             
-            print(self.location + 'at ' + coordsToString())
+            print(self.location + ' at ' + self.coordsToString())
         else:
             self.location = 'none'
