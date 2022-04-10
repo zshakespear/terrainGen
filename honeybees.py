@@ -1,6 +1,6 @@
 """
 TODO:
-    -Implement random locations
+    
 """
 
 import random
