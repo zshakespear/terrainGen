@@ -132,15 +132,15 @@ image.save("biomeMap.jpg")
 # draw.flush() 
 # image.save("elMap.jpg")
 
-for row in range(rows):
-  #color = row * 10, row * 20, row * 30 #Sets the color for the row with RGB values
-  for col in range(columns):
-    hexagon = hexagon_generator(row, col) #Passes the row and column into the call function
-    coords = (row, col)
-    color = color_from_water(hexdict[coords])
-    draw.polygon(list(hexagon), Brush(color)) #Paints inside the vertices using the color determined by the row
-draw.flush() 
-image.save("waterMap.jpg")
+# for row in range(rows):
+#   #color = row * 10, row * 20, row * 30 #Sets the color for the row with RGB values
+#   for col in range(columns):
+#     hexagon = hexagon_generator(row, col) #Passes the row and column into the call function
+#     coords = (row, col)
+#     color = color_from_water(hexdict[coords])
+#     draw.polygon(list(hexagon), Brush(color)) #Paints inside the vertices using the color determined by the row
+# draw.flush() 
+# image.save("waterMap.jpg")
 
 # for row in range(rows):
 #   #color = row * 10, row * 20, row * 30 #Sets the color for the row with RGB values
