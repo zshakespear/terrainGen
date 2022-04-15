@@ -118,7 +118,7 @@ for row in range(rows):
     hexagon = hexagon_generator(row, col) #Passes the row and column into the call function
     coords = (row, col)
     color = color_from_biome(hexdict[coords])
-    draw.polygon(list(hexagon), Brush(color)) #Paints inside the vertices using the color determined by the row
+    draw.polygon(list(hexagon), Pen('black'), Brush(color)) #Paints inside the vertices using the color determined by the row
 draw.flush() 
 image.save("biomeMap.jpg")
 

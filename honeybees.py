@@ -8,7 +8,10 @@ import noise
 import pandas as pd
 import os
 
-boundaryscale = 2
+boundaryscale = 1
+elseed = random.randint(0,100)
+preseed = random.randint(0,100)
+tempseed = random.randint(0,100)
 
 class Hex:
     #Need to add error handling
@@ -24,19 +27,19 @@ class Hex:
     def setElevation(self):
         maxel = 100
         base = 50
-        noiseval = noise.pnoise2(self.coords[0]/34,self.coords[1]/10,octaves = 1, base = random.randint(0,100))
+        noiseval = noise.pnoise2(self.coords[0]/8.5,self.coords[1]/5,octaves = 1, base = elseed)
         self.ele = maxel * noiseval + base
         
     def setPrecipitation(self):
         maxpre = 100
         base = 50
-        noiseval = noise.pnoise2(self.coords[0]/34,self.coords[1]/10,octaves = 1, base = random.randint(0,100))
+        noiseval = noise.pnoise2(self.coords[0]/8.5,self.coords[1]/5,octaves = 1, base = preseed )
         self.pre = maxpre * noiseval + base
         
     def setTemperature(self):
         maxtemp = 100
         base = 50
-        noiseval = noise.pnoise2(self.coords[0]/34,self.coords[1]/10, octaves = 1, base = random.randint(0,100))
+        noiseval = noise.pnoise2(self.coords[0]/8.5,self.coords[1]/5, octaves = 1, base = random.randint(0,100))
         self.temp = maxtemp * noiseval + base
     
     def setBiome(self):
