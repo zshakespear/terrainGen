@@ -18,10 +18,10 @@ class Hex:
     def __init__(self, coords):
         self.coords = coords
         self.setElevation()
-        # self.setPrecipitation()
-        # self.setTemperature()
+        self.setPrecipitation()
+        self.setTemperature()
         self.setBiome()
-        # self.setWater()
+        self.setWater()
         self.setLocation()
     
     def setElevation(self):
@@ -43,16 +43,22 @@ class Hex:
         self.temp = maxtemp * noiseval + base
     
     def setBiome(self):
-        if self.ele > 75:
+        if self.ele > 80:
             self.biome = 'mountain'
         else:
-            if self.ele > 50:
-                self.biome = 'forest'
+            if self.temp > 50 and self.pre > 50:
+                self.biome = 'wetland'
             else:
-                if self.ele > 25:
-                    self.biome = 'plain'
+                if self.temp <= 50 and self.pre > 50:
+                    self.biome = 'forest'
                 else:
-                    self.biome = 'wetland'
+                    if self.temp >= 75 and self.pre <= 50:
+                        self.biome = 'desert'
+                    else:
+                        if self.temp >= 25 and self.pre <= 50:
+                            self.biome = 'plain'
+                        else:
+                            self.biome = 'tundra'
                         
                         
     
