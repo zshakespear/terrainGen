@@ -18,7 +18,7 @@ for i in range(rows):
         coordset.append((i,j))
     
 hexdict = {}
-seed = random.randint(0,256)
+# seed = random.randint(0,256)
 locationList =  pd.DataFrame([['Location', 'Coordinates']])
 for el in coordset:
     hexdict[el] = hb.Hex((el[0],el[1]))

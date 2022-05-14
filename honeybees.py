@@ -10,8 +10,9 @@ import os
 
 boundaryscale = 1
 elseed = random.randint(0,100)
-preseed = random.randint(0,100)
-tempseed = random.randint(0,100)
+print(elseed)
+# preseed = random.randint(0,100)
+# tempseed = random.randint(0,100)
 
 class Hex:
     #Need to add error handling
@@ -43,7 +44,7 @@ class Hex:
         self.temp = maxtemp * noiseval + base
     
     def setBiome(self):
-        if self.ele > 75:
+        if self.ele > 80:
             self.biome = 'mountain'
         else:
             if self.ele > 50:
@@ -75,10 +76,29 @@ class Hex:
         if location == 16:
             wd = os.getcwd()
             wd+='\GenLoc.xlsx'
-            locgen = pd.read_excel(wd)
+            locgen = pd.read_excel(wd, sheet_name = 'Sheet2')
+            
+            r0 = random.randint(0,1)
+            if r0 == 0:
+                locgen = locgen['General']
+            else:
+                if self.biome == 'mountain':
+                    locgen = locgen['Mountain']
+                    
+                if self.biome == 'forest':
+                    locgen = locgen['Forest']
+                   
+                if self.biome == 'plain':
+                    locgen = locgen['Plain']
+                    
+                if self.biome == 'wetland':
+                    locgen = locgen['Wetland']
+                    
+            
+            locgen = locgen[locgen.notna()]
             loclimit = locgen.size - 1
             locseed = random.randint(0, loclimit)
-            self.location = locgen.at[locseed, 'Locations']
+            self.location = locgen.at[locseed]
             
             # print(self.location + ' at ' + self.coordsToString())
         else:
