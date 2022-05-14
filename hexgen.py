@@ -31,23 +31,29 @@ with open("locationList.txt", 'w') as file:
         file.write(textDummy)
         
 def color_from_biome(Hex):
-    if Hex.biome == "wetland":
-        color = 9, 82, 86
-    else:
-        if Hex.biome == 'mountain':
-            color = 51, 30, 54
-        else:
-            if Hex.biome == 'forest':
-                color = 20, 153, 17
-            else:
-                if Hex.biome == 'plain':
-                    color = 220, 247, 99
-                else: 
-                    if Hex.biome == 'desert':
-                        color = 242, 100, 25
-                    else:
-                        if Hex.biome == 'tundra':
-                            color = 217, 208, 222
+    if Hex.biome == "ocean":
+        color = 35,60,108
+    if Hex.biome == 'rainforest':
+        color = 20, 153, 17
+    if Hex.biome == 'beach':
+        color = 220,247,99
+    if Hex.biome == 'mountain':
+        color = 51,30,54
+    # else:
+    #     if Hex.biome == 'mountain':
+    #         color = 51, 30, 54
+    #     else:
+    #         if Hex.biome == 'forest':
+    #             color = 20, 153, 17
+    #         else:
+    #             if Hex.biome == 'plain':
+    #                 color = 220, 247, 99
+    #             else: 
+    #                 if Hex.biome == 'desert':
+    #                     color = 242, 100, 25
+    #                 else:
+    #                     if Hex.biome == 'tundra':
+    #                         color = 217, 208, 222
     return color
 
 def color_from_el(Hex):
