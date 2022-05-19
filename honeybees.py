@@ -44,16 +44,16 @@ class Hex:
         self.temp = maxtemp * noiseval + base
     
     def setBiome(self):
-        if self.ele > 95:
+        if self.ele > 90:
             self.biome = 'mountain'
         else:
-            if self.ele > 80:
-                self.biome = 'rainforest'
+            if self.ele > 60:
+                self.biome = 'badlands'
             else:
-                if self.ele > 70:
-                    self.biome = 'beach'
+                if self.ele > 25:
+                    self.biome = 'desert'
                 else:
-                    self.biome = 'ocean'
+                    self.biome = 'plain'
                         
                         
     
@@ -85,14 +85,14 @@ class Hex:
                 if self.biome == 'mountain':
                     locgen = locgen['Mountain']
                     
-                if self.biome == 'rainforest':
-                    locgen = locgen['Forest']
+                if self.biome == 'badlands':
+                    locgen = locgen['Badlands']
                    
-                if self.biome == 'beach':
+                if self.biome == 'plain':
                     locgen = locgen['Plain']
                     
-                if self.biome == 'ocean':
-                    locgen = locgen['Ocean']
+                if self.biome == 'desert':
+                    locgen = locgen['Desert']
                     
             
             locgen = locgen[locgen.notna()]
