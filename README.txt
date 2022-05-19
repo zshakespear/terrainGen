@@ -20,7 +20,6 @@ https://www.youtube.com/watch?v=wZXW_nzJotc
 https://www.youtube.com/watch?v=fjZAgoxFKiQ
 
 TO-DO:
--Toy with the biome limits
 -Add more random locations
 -Find way to mark on map where the locations/water features are
--Hex borders
+-Update READMEs for each of the branches to explain what their purpose is. 
