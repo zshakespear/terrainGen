@@ -20,6 +20,6 @@ https://www.youtube.com/watch?v=wZXW_nzJotc
 https://www.youtube.com/watch?v=fjZAgoxFKiQ
 
 TO-DO:
--Add more random locations
+-Add more random locations, especially for the beach
 -Find way to mark on map where the locations/water features are
--Update READMEs for each of the branches to explain what their purpose is. 
+-Create a function to reshuffle locations
