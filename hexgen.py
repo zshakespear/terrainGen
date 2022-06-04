@@ -18,10 +18,10 @@ for i in range(rows):
         coordset.append((i,j))
     
 hexdict = {}
-# seed = random.randint(0,256)
+climate = 'temperate'
 locationList =  pd.DataFrame([['Location', 'Coordinates']])
 for el in coordset:
-    hexdict[el] = hb.Hex((el[0],el[1]))
+    hexdict[el] = hb.Hex((el[0],el[1]),climate)
     if hexdict[el].location != 'none':
         locationpd = pd.DataFrame([[hexdict[el].location, hexdict[el].coordsToString()]])
         locationList = pd.concat([locationList,locationpd])
@@ -31,14 +31,33 @@ with open("locationList.txt", 'w') as file:
         file.write(textDummy)
         
 def color_from_biome(Hex):
+<<<<<<< HEAD
     if Hex.biome == "plain":
         color = 92,128,1
     if Hex.biome == 'desert':
         color = 244,213,141
     if Hex.biome == 'badlands':
         color = 164,66,0
+=======
+    if Hex.biome == "ocean":
+        color = 35,60,108
+    if Hex.biome == 'rainforest' or Hex.biome == 'forest':
+        color = 20, 153, 17
+    if Hex.biome == 'beach':
+        color = 220,247,99
+>>>>>>> islands
     if Hex.biome == 'mountain':
         color = 51,30,54
+    if Hex.biome == "wetland":
+        color = 9, 82, 86
+    if Hex.biome == 'plain':
+        color = 220, 247, 99
+    if Hex.biome == 'desert':
+        color = 242, 100, 25
+    if Hex.biome == 'badlands':
+        color = 164,66,0
+        
+    return color
     # else:
     #     if Hex.biome == 'mountain':
     #         color = 51, 30, 54
@@ -125,6 +144,22 @@ for row in range(rows):
     coords = (row, col)
     color = color_from_biome(hexdict[coords])
     draw.polygon(list(hexagon), Pen('black'), Brush(color)) #Paints inside the vertices using the color determined by the row
+    if hexdict[coords].location != 'none':
+        # print('Not ready yet\n')
+        # p = Pen("black", 2)
+        dy = hexagon_generator.row_height
+        dx = hexagon_generator.col_width/6
+        disp = 30
+        if coords[0] % 2 == 1:
+            xcoord = int(dx*(2*coords[0]+1))
+            ycoord = int(dy*(coords[0]+1) + coords[1]*2*dy)
+        else:
+            xcoord = int(dx*(coords[0]+1))
+            ycoord = int(2*dy*coords[0]+coords[1]*2*dy)
+        draw.line((xcoord-disp,ycoord-disp,xcoord+disp,ycoord+disp), Pen("black", 2))
+        draw.line((xcoord-disp,ycoord+disp,xcoord+disp,ycoord-disp), Pen("black", 2))
+    #     # s = d1.tostring()
+        
 draw.flush() 
 image.save("biomeMap.jpg")
 
@@ -158,46 +193,3 @@ image.save("biomeMap.jpg")
 # draw.flush() 
 # image.save("tempMap.jpg")
 
-"""
-# path = [x for x in range(0,20)]
-
-seed = input('Input the seed biome: \n0: Desert\n1: Hill\n2: Mountain\n3: Plain\n4: Wetland\n5: Forest\n')
-while seed != '0' and seed != '1' and seed != '2' and seed != '3' and seed != '4' and seed != '5':
-    seed = input('Invalid input.\nInput the seed biome: \n0: Desert\n1: Hill\n2: Mountain\n3: Plain\n4: Wetland\n5: Forest\n')
-
-seed = int(seed)
-
-if seed == 0:
-    seedb = 'desert'
-if seed == 1:
-    seedb = 'hill'
-if seed == 2:
-    seedb = 'mountain'
-if seed == 3:
-    seedb = 'plain'
-if seed == 4:
-    seedb = 'wetland'
-if seed == 5:
-    seedb = 'forest'
-    
-start = hb.Hex(seedb)
-
-hexmap ={(0,0,0) : start}
-while True:
-    maxit = input('Input number of layers for the map\n')
-    try:
-        maxit = int(maxit)
-        break
-    except:
-        print('Invalid input.\n')
-
-hb.genNeighbors(0, 0, 0, hexmap, 0, maxit)
-print("about to manually add hexes\n")
-# hexmap[(maxit, -maxit, 0)] = hb.helperGen(hexmap[(maxit-1,-maxit+1,0)].biome)
-# hexmap[(0,maxit,-maxit)] = hb.helperGen(hexmap[(0,maxit-1,-maxit+1)].biome)
-# hexmap[(-maxit, 0, maxit)] = hb.helperGen(hexmap[(-maxit+1,0,maxit-1)].biome)
-#print('Done generating map.\nPrinting')
-
-    
-hb.printMap(hexmap)
-"""
