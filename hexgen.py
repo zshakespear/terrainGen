@@ -18,7 +18,7 @@ for i in range(rows):
         coordset.append((i,j))
     
 hexdict = {}
-climate = 'temperate'
+climate = 'arid'
 locationList =  pd.DataFrame([['Location', 'Coordinates']])
 for el in coordset:
     hexdict[el] = hb.Hex((el[0],el[1]),climate)
@@ -31,21 +31,14 @@ with open("locationList.txt", 'w') as file:
         file.write(textDummy)
         
 def color_from_biome(Hex):
-<<<<<<< HEAD
-    if Hex.biome == "plain":
-        color = 92,128,1
-    if Hex.biome == 'desert':
-        color = 244,213,141
-    if Hex.biome == 'badlands':
-        color = 164,66,0
-=======
+
     if Hex.biome == "ocean":
         color = 35,60,108
     if Hex.biome == 'rainforest' or Hex.biome == 'forest':
         color = 20, 153, 17
     if Hex.biome == 'beach':
         color = 220,247,99
->>>>>>> islands
+
     if Hex.biome == 'mountain':
         color = 51,30,54
     if Hex.biome == "wetland":

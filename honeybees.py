@@ -43,19 +43,7 @@ class Hex:
         noiseval = noise.pnoise2(self.coords[0]/8.5,self.coords[1]/5, octaves = 1, base = random.randint(0,100))
         self.temp = maxtemp * noiseval + base
     
-<<<<<<< HEAD
-    def setBiome(self):
-        if self.ele > 90:
-            self.biome = 'mountain'
-        else:
-            if self.ele > 60:
-                self.biome = 'badlands'
-            else:
-                if self.ele > 25:
-                    self.biome = 'desert'
-                else:
-                    self.biome = 'plain'
-=======
+
     def setBiome(self, climate):
         if climate == 'island':
             if self.ele > 95:
@@ -90,7 +78,7 @@ class Hex:
                         self.biome = 'plain'
                     else:
                         self.biome = 'wetland'
->>>>>>> islands
+
                         
                         
     
@@ -140,6 +128,9 @@ class Hex:
                     
                 if self.biome == 'wetland':
                     locgen = locgen['Wetland']
+                    
+                if self.biome == 'beach':
+                    locgen = locgen['Beach']
 
                     
             
