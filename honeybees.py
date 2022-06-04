@@ -78,7 +78,24 @@ class Hex:
                         self.biome = 'plain'
                     else:
                         self.biome = 'wetland'
-
+        if climate == 'continents':
+            
+            if self.ele < 30:
+                self.biome = 'ocean'
+            
+            # if self.ele >= 20:
+                # self.biome = 'beach'
+            
+            if self.ele >= 30:
+                self.biome = 'wetland'
+            if self.ele > 50:
+                self.biome = 'plain'
+            if self.ele > 70:
+               self.biome = 'forest'
+               
+            if self.ele > 90:
+                self.biome = 'mountain' 
+            
                         
                         
     

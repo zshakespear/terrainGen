@@ -4,7 +4,7 @@ Image code was taken from:
 """
 
 import honeybees as hb
-import random
+# import random
 import hextile
 from PIL import Image
 from aggdraw import Draw, Brush, Pen
@@ -18,7 +18,7 @@ for i in range(rows):
         coordset.append((i,j))
     
 hexdict = {}
-climate = 'arid'
+climate = 'continents'
 locationList =  pd.DataFrame([['Location', 'Coordinates']])
 for el in coordset:
     hexdict[el] = hb.Hex((el[0],el[1]),climate)
@@ -37,7 +37,7 @@ def color_from_biome(Hex):
     if Hex.biome == 'rainforest' or Hex.biome == 'forest':
         color = 20, 153, 17
     if Hex.biome == 'beach':
-        color = 220,247,99
+        color = 194, 178, 128
 
     if Hex.biome == 'mountain':
         color = 51,30,54
@@ -137,21 +137,21 @@ for row in range(rows):
     coords = (row, col)
     color = color_from_biome(hexdict[coords])
     draw.polygon(list(hexagon), Pen('black'), Brush(color)) #Paints inside the vertices using the color determined by the row
-    if hexdict[coords].location != 'none':
-        # print('Not ready yet\n')
-        # p = Pen("black", 2)
-        dy = hexagon_generator.row_height
-        dx = hexagon_generator.col_width/6
-        disp = 30
-        if coords[0] % 2 == 1:
-            xcoord = int(dx*(2*coords[0]+1))
-            ycoord = int(dy*(coords[0]+1) + coords[1]*2*dy)
-        else:
-            xcoord = int(dx*(coords[0]+1))
-            ycoord = int(2*dy*coords[0]+coords[1]*2*dy)
-        draw.line((xcoord-disp,ycoord-disp,xcoord+disp,ycoord+disp), Pen("black", 2))
-        draw.line((xcoord-disp,ycoord+disp,xcoord+disp,ycoord-disp), Pen("black", 2))
-    #     # s = d1.tostring()
+    # if hexdict[coords].location != 'none':
+    #     # print('Not ready yet\n')
+    #     # p = Pen("black", 2)
+    #     dy = hexagon_generator.row_height
+    #     dx = hexagon_generator.col_width/6
+    #     disp = 30
+    #     if coords[0] % 2 == 1:
+    #         xcoord = int(dx*(2*coords[0]+1))
+    #         ycoord = int(dy*(coords[0]+1) + coords[1]*2*dy)
+    #     else:
+    #         xcoord = int(dx*(coords[0]+1))
+    #         ycoord = int(2*dy*coords[0]+coords[1]*2*dy)
+    #     draw.line((xcoord-disp,ycoord-disp,xcoord+disp,ycoord+disp), Pen("black", 2))
+    #     draw.line((xcoord-disp,ycoord+disp,xcoord+disp,ycoord-disp), Pen("black", 2))
+    # #     # s = d1.tostring()
         
 draw.flush() 
 image.save("biomeMap.jpg")
