@@ -131,7 +131,9 @@ dmypy.json
 #Other Stuff
 *.png
 *.jpg
-locationList.txt
+locationList*.txt
+biomeMap*.jpg
+biomeMap*.png
 noiseranges.py
 testnoise.py
 testtile.py
