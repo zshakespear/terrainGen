@@ -18,15 +18,17 @@ for i in range(rows):
         coordset.append((i,j))
     
 hexdict = {}
-climate = 'continents'
+climate = 'temperate'
 locationList =  pd.DataFrame([['Location', 'Coordinates']])
 for el in coordset:
     hexdict[el] = hb.Hex((el[0],el[1]),climate)
     if hexdict[el].location != 'none':
         locationpd = pd.DataFrame([[hexdict[el].location, hexdict[el].coordsToString()]])
         locationList = pd.concat([locationList,locationpd])
-        
-with open("locationList.txt", 'w') as file:
+
+seed = hexdict[(0,0)].getElSeed()
+location_name = "locationList"+str(seed)+".txt"        
+with open(location_name, 'w') as file:
         textDummy = locationList.to_string(header=False, index = False)
         file.write(textDummy)
         
@@ -153,8 +155,9 @@ for row in range(rows):
     #     draw.line((xcoord-disp,ycoord+disp,xcoord+disp,ycoord-disp), Pen("black", 2))
     # #     # s = d1.tostring()
         
-draw.flush() 
-image.save("biomeMap.jpg")
+draw.flush()
+image_name = 'biomeMap'+str(seed)+'.png'
+image.save(image_name)
 
 # for row in range(rows):
 #   #color = row * 10, row * 20, row * 30 #Sets the color for the row with RGB values

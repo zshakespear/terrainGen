@@ -24,6 +24,9 @@ class Hex:
         self.setBiome(climate)
         # self.setWater()
         self.setLocation()
+        
+    def getElSeed(self):
+        return elseed
     
     def setElevation(self):
         maxel = 100
